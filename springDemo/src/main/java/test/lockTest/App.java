@@ -25,7 +25,7 @@ public class App {
 			
 		});
 //		
-		//删除操作线程 现在启动这俩xianchen
+		//删除操作线程 
 		Thread t2 = new Thread(new Runnable(){
 			@Override
 			public void run() {

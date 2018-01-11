@@ -52,7 +52,26 @@
 	</dependency>
 	
   <!-- db end -->
-  
+  <!-- 事务 start-->
+    <dependency>
+		<groupId>com.atomikos</groupId>
+		<artifactId>transactions-jta</artifactId>
+		<version>3.6.4</version>
+		<exclusions>
+			<exclusion>
+				<artifactId>geronimo-jta_1.0.1B_spec</artifactId>
+				<groupId>org.apache.geronimo.specs</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+  <!-- 事务 end -->
+	<dependency>
+		<groupId>oracle</groupId>
+		<artifactId>ojdbc14</artifactId>
+		<version>1.0</version>
+		<scope>system</scope>
+		<systemPath>${basedir}/src/lib/ojdbc14.jar</systemPath>
+	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

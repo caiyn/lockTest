@@ -25,7 +25,7 @@ public class LockTestDAOImpl extends JdbcBaseDao implements LockTestDAO {
 		// TODO Auto-generated method stub
 		List<Object[]> ids = new ArrayList<Object[]>();
 		for(int i=0;i<10000;i++)
-			ids.add(new Object[]{20,"caiyn"});
+			ids.add(new Object[]{20,"admin"});
 		super.batchUpdate(SQL_UPDATE_PATENT, ids);
 	}
 

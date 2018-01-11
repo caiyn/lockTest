@@ -19,12 +19,13 @@ public class LockTestBSImpl implements LockTestBS {
 		}
 		System.out.println("更新开始..................");
 		lockTestDAO.updateAge();
+		System.out.println("更细结束。。。。。。。。。。。");
 	}
 	
 	@Override
 	public void initDate() {
 		// TODO Auto-generated method stub
-		lockTestDAO.initDate(10, "caiyn");
+		lockTestDAO.initDate(10, "admin");
 	}
 	
 	@Override
@@ -37,7 +38,9 @@ public class LockTestBSImpl implements LockTestBS {
 			e.printStackTrace();
 		}
 		System.out.println("删除开始..................");
-		lockTestDAO.deleteAge("caiyn");
+		lockTestDAO.deleteAge("admin");
+		System.out.println("删除结束。。。。。。。");
+//		lockTestDAO.initDate(100, "admin");
 	}
 	public LockTestDAO getLockTestDAO() {
 		return lockTestDAO;

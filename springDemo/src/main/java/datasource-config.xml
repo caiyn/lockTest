@@ -18,9 +18,37 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc">
-
-	<!-- jdbc 数据源 -->
-	<bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<!-- 数据源 oracle 带事务的-->
+	<bean id="prosearchDataSource"
+		class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init"
+		destroy-method="close">
+		<property name="uniqueResourceName">
+			<value>prosearchDataSource</value>
+		</property>
+		<property name="xaDataSourceClassName">
+			<value>oracle.jdbc.xa.client.OracleXADataSource</value>
+			<!--<value>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</value>
+		--></property>
+		<property name="xaProperties">
+			<props>
+				<prop key="user">sipo_prosearch</prop>
+				<prop key="password">sipo_prosearch</prop>
+				<prop key="URL"><!--
+					jdbc:mysql://localhost:3306/school?useSSL=true
+				-->
+				jdbc:oracle:thin:@(DESCRIPTION =(ADDRESS_LIST =(ADDRESS = (PROTOCOL = TCP)(HOST = 10.51.52.95)(PORT = 1521)))(CONNECT_DATA =(SERVER = DEDICATED)(SID = xxdb1)))
+				</prop>
+			</props>
+		</property>
+		<property name="maxPoolSize">
+			<value>30</value>
+		</property>
+		<property name="minPoolSize">
+			<value>5</value>
+		</property>
+	</bean>
+	<!-- jdbc 数据源 mysql-->
+	<!--<bean id="applicationDataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${drm.dataSource.driverClassName}" />
 		<property name="url" value="${drm.dataSource.url}" />
@@ -32,9 +60,9 @@
 		<property name="maxIdle" value="${drm.dataSource.maxIdle}" />
 		<property name="maxWait" value="${drm.dataSource.maxWait}" />
 	</bean>
-	<bean id="basedao" lazy-init="true" class="test.lockTest.common.JdbcBaseDao" abstract="true">
+	--><bean id="basedao" lazy-init="true" class="test.lockTest.common.JdbcBaseDao" abstract="true">
 		<property name="dataSource">
-			<ref bean="applicationDataSource" />
+			<ref bean="prosearchDataSource" />
 		</property>
 	</bean>
 </beans>
